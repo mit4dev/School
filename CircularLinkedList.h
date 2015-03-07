@@ -7,7 +7,7 @@ class CircularLinkedList
 {
 public:
 	const CircularLinkedList<Type>& operator=
-		(const CircularLinkedList<Type>&);
+		(const CircularLinkedList<Type>& right);
 	void initializeList();
 	bool isEmptyList();
 	void print() const;
