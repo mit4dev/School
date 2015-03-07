@@ -103,5 +103,54 @@ bool CircularLinkedList<Type>::search(
 	return (current->info == searchItem);
 }
 
+template <class Type>
+void CircularLinkedList<Type>::insertNode(
+	const Type& newItem)
+{
+	NodeType<Type> *trail, *current, *newNode;
+	newNode = new NodeType < Type > ;
+	newNode->info = newItem;
+	bool found = false;
+
+	if(first == NULL)
+	{
+		first = newNode;
+		first->link = first;
+		count++;
+	}
+	else
+	{
+		trail = current = first->link;
+		while(current != first)
+		{
+			if(current->info >= newItem)
+				found = true;
+			else
+			{
+				trail = current;
+				current = current->link;
+			}
+		}
+		if(current == first)
+		{
+			newNode->link = first->link;
+			first->link = newNode;
+			first = newNode;
+			count++;
+		}
+		else if(current == first->link)
+		{
+			first->link = newNode;
+			newNode->link = first->link;
+			count++;
+		}
+		else
+		{
+			newNode->link = trail->link;
+			trail->link = newNode;
+			count++;
+		}
+	}
+}
 
 #endif
