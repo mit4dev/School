@@ -70,4 +70,38 @@ void CircularLinkedList<Type>::destroyList()
 	}
 }
 
+template <class Type>
+Type CircularLinkedList<Type>::front()
+{
+	return (first->link->info);
+}
+
+template <class Type>
+Type CircularLinkedList<Type>::back()
+{
+	return (first->info);
+}
+
+template <class Type>
+bool CircularLinkedList<Type>::search(
+	const Type& searchItem)
+{
+	NodeType<Type> *current;
+	bool found;
+	if(!isEmptyList())
+	{
+		found = false;
+		current = first->link;
+		while(current != first)
+		{
+			if(current->info >= searchItem)
+				found = true;
+			else
+				current = current->link;
+		}
+	}
+	return (current->info == searchItem);
+}
+
+
 #endif
