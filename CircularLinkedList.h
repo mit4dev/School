@@ -1,4 +1,4 @@
-#ifndef H_CircularLinkedList
+#ifndef H_CircularLinkedList 
 #define H_CircularLinkedList
 #include "NodeType.h"
 
