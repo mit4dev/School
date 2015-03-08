@@ -121,7 +121,7 @@ void CircularLinkedList<Type>::insertNode(
 	else
 	{
 		trail = current = first->link;
-		while(current != first)
+		while(current != first && !found)
 		{
 			if(current->info >= newItem)
 				found = true;
@@ -149,6 +149,58 @@ void CircularLinkedList<Type>::insertNode(
 			newNode->link = trail->link;
 			trail->link = newNode;
 			count++;
+		}
+	}
+}
+
+template <class Type>
+void CircularLinkedList<Type>::deleteNode(
+	const Type& deleteItem)
+{
+	NodeType<Type> *trail, *current;
+	bool found = false;
+
+	if(!isEmptyList())
+	{
+		trail = current = first->link;
+		while(current != first && !found)
+		{
+			if(current->info >= deleteItem)
+				found = true;
+			else
+			{
+				trail = current;
+				current = current->link;
+			}
+		}
+		if(found && current->info == deleteItem)
+		{
+			if(current == first) //if last
+			{
+				trail->link = first->link;
+				first = trail;
+				count--;
+				delete current;
+			}
+			else
+			{
+				trail->link = current->link;
+				count--;
+				delete current;
+			}
+			if(count == 0)
+			{
+				first = NULL;
+			}
+			if(count == 1)
+			{
+				first->link = first;
+			}
+		}
+		else
+		{
+			cout << "Item to be deleted is not in the list."
+				<< endl;
 		}
 	}
 }

@@ -29,4 +29,7 @@ protected:
 	// nodeType<Type> *last;
 private:
 	void copyList(const CircularLinkedList<Type>& otherList);
-};#include "CircularLinkedList.cpp"#endif
+};
+
+#include "CircularLinkedList.cpp"
+#endif
