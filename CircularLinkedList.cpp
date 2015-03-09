@@ -205,4 +205,55 @@ void CircularLinkedList<Type>::deleteNode(
 	}
 }
 
+template <class Type>
+CircularLinkedList<Type>::CircularLinkedList()
+{
+	first = NULL;
+	count = 0;
+}
+
+template <class Type>
+CircularLinkedList<Type>::CircularLinkedList(
+	const CircularLinkedList<Type>& otherList)
+{
+	copyList(otherList);
+}
+
+template <class Type>
+CircularLinkedList<Type>::~CircularLinkedList()
+{
+	destroyList();
+}
+
+template <class Type>
+void CircularLinkedList<Type>::copyList(
+	const CircularLinkedList<Type>& otherList)
+{
+	if(!(*this == otherList&))
+	{
+		NodeType<Type> *current, *newNode;
+
+		if(otherList->first == NULL)
+		{
+			first = NULL;
+			count = 0;
+		}
+		else
+		{
+			current = otherList.first;
+			newNode = new NodeType < Type >;
+			newNode->info = current->info;
+			first = newNode;
+			current = current->link;
+			while(current != first)
+			{
+				newNode = new NodeType < Type > ;
+				newNode->info = current->info;
+				current = current->link;
+			}
+			count = otherList.count;
+		}
+	}
+}
+
 #endif
